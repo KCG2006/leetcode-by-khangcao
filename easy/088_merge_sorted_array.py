@@ -36,3 +36,29 @@ class Solution(object):
         # elif j>= n:
         #     arr[k:] = nums1[i:m]
         nums1[:] = arr[:]
+
+# Time: O(M + N)
+# Space: O(1)
+class Solution2(object):
+    def merge(self, nums1, m, nums2, n):
+        """
+        :type nums1: List[int]
+        :type m: int
+        :type nums2: List[int]
+        :type n: int
+        :rtype: None Do not return anything, modify nums1 in-place instead.
+        """
+        i = m - 1
+        j = n - 1
+        q = len(nums1) - 1
+        while j >= 0 and i >= 0:
+            if nums2[j] > nums1[i]:
+                nums1[q] = nums2[j]
+                j -= 1
+
+            else:
+                nums1[q] = nums1[i]
+                i -= 1
+            q -= 1
+        if j >= 0:
+            nums1[:q + 1] = nums2[:j + 1]
