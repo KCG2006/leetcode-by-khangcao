@@ -13,16 +13,20 @@ class Solution(object):
         :type root: Optional[TreeNode]
         :rtype: bool
         """
-        def check_symmetric(left_child, right_child):
+        if root is None:
+            return True
+        def is_symmetric(left_child, right_child):
             if not left_child and not right_child:
                 return True
-            elif (not left_child and right_child) or (left_child and not right_child):
+            if not left_child or not right_child:
                 return False
-            elif left_child.val != right_child.val:
+            if left_child.val != right_child.val:
                 return False
             else:
-                return check_symmetric(left_child.left, right_child.right) and check_symmetric(left_child.right, right_child.left)
-        return check_symmetric(root.left, root.right)
+                return is_symmetric(left_child.left, right_child.right) and is_symmetric(left_child.right,
+                                                                                         right_child.left)
+        return is_symmetric(root.left, root.right)
+
 
 # Time: O(N)
 # Space: O(N)
