@@ -18,3 +18,30 @@ class Solution(object):
                 hash_table_2[t[i]] = len(hash_table_2)
         return True
 
+# Time: O(N)
+# Space: O(N)
+
+class Solution2(object):
+    def isIsomorphic(self, s, t):
+        """
+        :type s: str
+        :type t: str
+        :rtype: bool
+        """
+        if len(s) != len(t):
+            return False
+        mapping_s_t = {}
+        mapped_t = set()
+        for cs, ct in zip(s, t):
+            if cs in mapping_s_t:
+                if mapping_s_t[cs] != ct:
+                    return False
+            else:
+                if ct in mapped_t:
+                    return False
+                mapping_s_t[cs] = ct
+                mapped_t.add(ct)
+        return True
+
+
+
